@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         usernameEditText = findViewById(R.id.usernameEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         firebaseAuth = FirebaseAuth.getInstance();
+
+        loginBtn.setOnClickListener(loginClickListener);
     }
 
     View.OnClickListener loginClickListener = new View.OnClickListener() {
