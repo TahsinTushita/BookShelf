@@ -89,9 +89,7 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             }
                         });
-
                     }
-
                 }
             });
         } else {
@@ -101,7 +99,6 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(LoginActivity.this, HomePageActivity.class));
             finish();
         }
-
         regBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
