@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="Home"
+        android:id="@+id/homePage"
+        android:icon="@drawable/home"
+        />
+
+    <item
+        android:title="All Books"
+        android:id="@+id/allBooks"
+        android:icon="@drawable/allbooks"
+        />
+
+    <item
+        android:title="Update Profile"
+        android:id="@+id/updProfile"
+        android:icon="@drawable/update_profile"
+        />
+
+    <item
+        android:title="Request for a book"
+        android:id="@+id/requestForBook"
+        android:icon="@drawable/request_book"
+        />
+
+    <item
+        android:title="Help and Support"
+        android:id="@+id/help_and_support"
+        android:icon="@drawable/help_and_support"
+        />
+
+
+    <item android:title="Info">
+        <menu>
+            <item
+                android:title="Profile"
+                android:id="@+id/profileid"
+                android:icon="@drawable/person"
+                />
+
+            <item
+                android:title="Book List"
+                android:id="@+id/bookListid"
+                android:icon="@drawable/booklist"
+                />
+
+            <item
+                android:title="Wish List"
+                android:id="@+id/wishListid"
+                android:icon="@drawable/wishlist"
+                />
+
+        </menu>
+    </item>
+
+    <item android:title="Requests">
+
+        <menu>
+            <item
+                android:title="Requests"
+                android:id="@+id/requestsid"
+                android:icon="@drawable/profile"
+                />
+
+            <item
+                android:title="Requested Books"
+                android:id="@+id/requestedBooksid"
+                android:icon="@drawable/request"
+                />
+
+            <item
+                android:title="Borrowed Books"
+                android:id="@+id/borrowedBooksid"
+                android:icon="@drawable/borrowed"
+                />
+
+            <item
+                android:title="Lent Books"
+                android:id="@+id/lentBooksid"
+                android:icon="@drawable/lent"
+                />
+        </menu>
+    </item>
+
+</menu>

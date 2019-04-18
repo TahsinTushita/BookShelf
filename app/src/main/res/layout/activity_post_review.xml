@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".PostReview">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimaryDark"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:contentInsetStart="50dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Post Review"
+            android:textSize="40dp"
+            android:fontFamily="@font/justanotherhand"
+            />
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="25dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title:"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/patrickhandsc"
+            />
+
+        <EditText
+            android:padding="8dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/round_corner_bg1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/reviewTitle"
+            />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/patrickhandsc"
+        android:textSize="18sp"
+        />
+
+
+    <EditText
+        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:layout_height="150dp"
+        android:background="@drawable/round_corner_bg1"
+        android:id="@+id/reviewDesc" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/postBtn"
+        android:layout_marginTop="15sp"
+        android:layout_gravity="center"
+        android:text="Post"
+        android:background="@drawable/round_corner_bg"
+        android:fontFamily="@font/justanotherhand"
+        android:textSize="35dp"
+        android:onClick="startPosting"
+        />
+
+</LinearLayout>

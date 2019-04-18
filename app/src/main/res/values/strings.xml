@@ -1,18 +1,13 @@
 <resources>
     <string name="app_name">BookShelf</string>
-    <string name="invalid_login_msg">Login Invalid</string>
-    <string name="successful_login">Login Success!!</string>
-    <string name="unsuccessful_login">Login Failed</string>
-    <string name="nav_home">Home</string>
-    <string name="nav_profile">Profile</string>
-    <string name="nav_update_profile">Update Profile</string>
-    <string name="nav_public_booklist">Public Booklist</string>
-    <string name="nav_own_booklist">Own Booklist</string>
-    <string name="nav_wishlist">Wishlist</string>
-    <string name="nav_requests">Requests</string>
-    <string name="nav_requested_books">My Orders</string>
-    <string name="nav_borrowed_books">Borrowed Books</string>
-    <string name="nav_lent_books">Lent Books</string>
-    <string name="nav_bookmarks">Bookmarks</string>
-    <string name="nav_help">Help and Support</string>
+    <string name="invalid_login_msg">Invalid login credential</string>
+    <string name="successful_login">Login Successful</string>
+    <string name="unsuccessful_login">There is problem. Have you entered your credentials correctly?</string>
+    <string name="app_label">Project_250</string>
+    <string name="search_hint">Search</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="nav_open">Open Navigation Bar</string>
+    <string name="nav_close">Close Navigation Bar</string>
+    <string name="username"><u>username</u></string>
 </resources>
