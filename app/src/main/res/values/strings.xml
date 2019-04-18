@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">BookShelf</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_profile">Profile</string>
+    <string name="nav_update_profile">Update Profile</string>
+    <string name="nav_balance">Balance</string>
+    <string name="nav_booklist">Booklist</string>
+    <string name="nav_request">Request</string>
+    <string name="nav_requests">My Requests</string>
+    <string name="nav_orders">My Orders</string>
+    <string name="nav_borrowed_books">Borrowed Books</string>
+    <string name="nav_lent_books">Lent Books</string>
+    <string name="nav_study_materials">Study Materials</string>
+    <string name="nav_my_courses">My Courses</string>
+    <string name="nav_enrolled_courses">Enrolled Courses</string>
+    <string name="nav_local_workshops">Local Workshops</string>
+    <string name="nav_my_schedule">My Schedule</string>
 </resources>
