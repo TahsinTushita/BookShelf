@@ -376,6 +376,16 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
                 intent = new Intent(this, PublicBooklistActivity.class);
                 drawer.closeDrawer(GravityCompat.START);
                 break;
+
+            case R.id.navBuyRequests:
+                intent =  new Intent(this,BuyRequests.class);
+                drawer.closeDrawer(GravityCompat.START);
+                break;
+
+            case R.id.navMyOrders:
+                intent = new Intent(this,MyOrders.class);
+                drawer.closeDrawer(GravityCompat.START);
+                break;
         }
         this.startActivity(intent);
         return false;

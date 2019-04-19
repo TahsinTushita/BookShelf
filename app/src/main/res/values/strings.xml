@@ -20,5 +20,20 @@
         <item>title</item>
         <item>category</item>
     </string-array>
+    <string-array name="filterbooksarray">
+        <item>Detective</item>
+        <item>Fiction</item>
+        <item>Young Adult</item>
+        <item>Fantasy</item>
+        <item>Adventure</item>
+        <item>Novel</item>
+        <item>History</item>
+        <item>Cookbook</item>
+        <item>Drama</item>
+        <item>Childrens Novel</item>
+        <item>Education</item>
+        <item>Short story</item>
+        <item>Comic</item>
+    </string-array>
 
 </resources>

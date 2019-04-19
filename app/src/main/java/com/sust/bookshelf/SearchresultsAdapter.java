@@ -51,7 +51,7 @@ public class SearchresultsAdapter extends RecyclerView.Adapter<SearchresultsAdap
 
     public class SearchresultsHolder extends RecyclerView.ViewHolder {
 
-        private TextView bookTitle,bookAuthor,bookISBN;
+        private TextView bookTitle,bookAuthor,bookCategory,bookPublisher;
         private ImageView imgurl;
         private CardView cardView;
 
@@ -61,11 +61,15 @@ public class SearchresultsAdapter extends RecyclerView.Adapter<SearchresultsAdap
             bookTitle = itemView.findViewById(R.id.bookTitle);
             bookAuthor = itemView.findViewById(R.id.bookAuthor);
             imgurl = itemView.findViewById(R.id.bookCover);
+            bookCategory = itemView.findViewById(R.id.bookCategory);
+            bookPublisher = itemView.findViewById(R.id.bookPublisher);
         }
 
         public void setDetails(Book book){
             bookTitle.setText(book.getTitle());
             bookAuthor.setText(book.getAuthor());
+            bookCategory.setText(book.getCategory());
+            bookPublisher.setText(book.getPublisher());
             Picasso.get().load(book.getImgurl()).into(imgurl);
         }
 

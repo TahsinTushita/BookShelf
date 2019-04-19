@@ -135,6 +135,36 @@
                 />
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/profilePricelauyout"
+            android:visibility="gone"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Price: "
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:textStyle="bold"
+                android:layout_marginRight="10dp"
+                android:textSize="15sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textSize="15sp"
+                android:text="loading..."
+                android:id="@+id/profilePrice"
+                />
+
+        </LinearLayout>
 
         <Button
             android:layout_width="wrap_content"
@@ -147,6 +177,16 @@
             android:background="@drawable/round_corner_bg"
             android:tooltipText="send a request fo this book"
             />
+
+        <Button
+            android:id="@+id/buyBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/round_corner_bg"
+            android:text="Buy"
+            android:visibility="gone" />
 
     </LinearLayout>
 

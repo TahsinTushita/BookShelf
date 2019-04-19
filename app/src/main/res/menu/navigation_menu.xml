@@ -94,6 +94,16 @@
                 android:id="@+id/lentBooksid"
                 android:icon="@drawable/lent"
                 />
+
+            <item
+                android:title="My Orders"
+                android:id="@+id/navMyOrders"
+                />
+
+            <item
+                android:title="Buy Requests"
+                android:id="@+id/navBuyRequests"
+                />
         </menu>
     </item>
 

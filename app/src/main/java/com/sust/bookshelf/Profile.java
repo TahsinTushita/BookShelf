@@ -39,7 +39,7 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
     private Button editBtn;
     private ProfileInfo profileInfo = new ProfileInfo();
     private DatabaseReference profileInfodatabase,profileDatabase;
-    Button requestBtn;
+    Button requestBtn,buyBtn;
 
     private ImageView profilePhoto;
 
@@ -69,6 +69,7 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
         email = findViewById(R.id.profileEmail);
         address = findViewById(R.id.profileAddress);
         requestBtn = findViewById(R.id.requestBtnid);
+        buyBtn = findViewById(R.id.buyBtn);
 
         profileInfodatabase = FirebaseDatabase.getInstance().getReference("Profile");
         profileDatabase = FirebaseDatabase.getInstance().getReference("Profile");
@@ -79,7 +80,25 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
         if (map != null)
         if (map.equals("MapActivity")){
             requestBtn.setVisibility(View.VISIBLE);
+            buyBtn.setVisibility(View.VISIBLE);
         }
+        buyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatabaseReference db = profileInfodatabase.child(getIntent().getStringExtra(EXTRA_PROFILE_ID)).child("booklist")
+                        .child(BookProfile.currentBook.getParent()).child("requests").child(LoginActivity.user);
+                db.child("username").setValue(LoginActivity.user);
+                db.child("parent").setValue(BookProfile.currentBook.getParent());
+                db.child("bookTitle").setValue(BookProfile.currentBook.getTitle());
+
+                db = profileDatabase.child(LoginActivity.user).child("requestedBooks")
+                        .child(BookProfile.currentBook.getParent());
+                db.child("username").setValue(getIntent().getStringExtra(EXTRA_PROFILE_ID));
+                db.child("bookTitle").setValue(BookProfile.currentBook.getTitle());
+                db.child("parent").setValue(BookProfile.currentBook.getParent());
+                Toast.makeText(Profile.this,"Request sent",Toast.LENGTH_LONG).show();
+            }
+        });
 
         requestBtn.setOnClickListener(new View.OnClickListener() {
             @Override

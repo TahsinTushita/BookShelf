@@ -32,7 +32,6 @@ public class PublicBooklistActivity extends AppCompatActivity {
         setContentView(R.layout.activity_public_booklist);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Public Booklist");
 
         recyclerView = findViewById(R.id.public_booklist_recyclerview);
         arrayList = new ArrayList<>();

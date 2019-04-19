@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AllBooksActivity">
+    tools:context=".BorrowedBooks">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -20,30 +20,29 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Buy Requests"
             android:textSize="40dp"
             android:fontFamily="@font/justanotherhand"
             />
 
     </android.support.v7.widget.Toolbar>
 
-    <EditText
-        android:layout_width="200dp"
-        android:layout_height="25dp"
-        android:layout_gravity="center"
-        android:id="@+id/sellerPriceText"
-        android:background="@drawable/round_corner_bg1"
-        android:layout_marginTop="200dp"
-        android:hint="Enter Price"
-        />
-
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:textSize="20dp"
         android:layout_gravity="center"
-        android:text="Set Price"
-        android:layout_marginTop="15dp"
-        android:id="@+id/setPricebtn"
+        android:text="Nothing to show!"
+        android:id="@+id/noRequestid"
+        android:textStyle="bold"
+        android:visibility="visible"
         />
-
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/buyrequests_recyclerView"
+        android:elevation="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>
