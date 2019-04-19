@@ -68,6 +68,8 @@ public class BookProfile extends AppCompatActivity implements View.OnClickListen
     private NavigationView navigationView;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle drawerToggle;
+
+    private Button findOwnerBtn;
     public static Book currentBook;
 
     private View rootview;
@@ -93,6 +95,8 @@ public class BookProfile extends AppCompatActivity implements View.OnClickListen
         String user = LoginActivity.user.toUpperCase();
         drawerUserName.setText(user);
 
+        findOwnerBtn = findViewById(R.id.findOwnerBtn);
+        findOwnerBtn.setOnClickListener(findOwnerBtnListener);
         drawer.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -244,6 +248,13 @@ public class BookProfile extends AppCompatActivity implements View.OnClickListen
         }
     };
     Integer cnt = 0;
+
+    View.OnClickListener findOwnerBtnListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(BookProfile.this,BookOwners.class).putExtra("bookObject",book));
+        }
+    };
 
 
     public void addToBooklist(){

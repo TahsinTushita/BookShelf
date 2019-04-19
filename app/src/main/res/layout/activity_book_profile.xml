@@ -36,7 +36,11 @@
 
         </android.support.v7.widget.Toolbar>
 
-
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    >
         <LinearLayout
             android:layout_width="wrap_content"
             android:background="@android:color/background_light"
@@ -51,6 +55,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 />
+        </LinearLayout>
             <LinearLayout
                 android:background="@android:color/background_light"
                 android:layout_width="wrap_content"
@@ -97,31 +102,6 @@
                     android:text="Publisher" />
 
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/wishlist"
-                        android:layout_marginTop="13dp"
-                        android:layout_marginRight="5dp"
-                        />
-
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Add to wishlist"
-                        android:fontFamily="@font/patrickhandsc"
-                        android:id="@+id/wishListid"
-                        android:background="@android:color/transparent"
-                        style="@style/Base.V7.Widget.AppCompat.EditText"
-                        />
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -178,6 +158,7 @@
 
 
                 </LinearLayout>
+
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -238,6 +219,57 @@
 
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/wishlist"
+                android:layout_marginTop="13dp"
+                android:layout_marginRight="5dp"
+                />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Find Owners"
+                android:fontFamily="@font/patrickhandsc"
+                android:id="@+id/findOwnerBtn"
+                android:background="@android:color/transparent"
+                style="@style/Base.V7.Widget.AppCompat.EditText"
+                />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/wishlist" />
+
+                <Button
+                    android:id="@+id/wishListid"
+                    style="@style/Base.V7.Widget.AppCompat.EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/patrickhandsc"
+                    android:text="Add to wishlist" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
 
         <View
             android:layout_width="380dp"
