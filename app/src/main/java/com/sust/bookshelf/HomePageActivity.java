@@ -18,7 +18,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,7 +34,6 @@ import com.lapism.searchview.widget.SearchAdapter;
 import com.lapism.searchview.widget.SearchItem;
 import com.lapism.searchview.widget.SearchView;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -377,6 +375,11 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
                intent = new Intent(this,UserManual.class);
                drawer.closeDrawer(GravityCompat.START);
                break;
+
+            case R.id.nav_public_booklist:
+                intent = new Intent(this, PublicBooklistActivity.class);
+                drawer.closeDrawer(GravityCompat.START);
+                break;
         }
         this.startActivity(intent);
         return false;

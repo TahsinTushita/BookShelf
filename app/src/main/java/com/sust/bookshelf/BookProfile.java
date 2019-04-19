@@ -466,6 +466,11 @@ public class BookProfile extends AppCompatActivity implements View.OnClickListen
                 intent = new Intent(this,UserManual.class);
                 drawer.closeDrawer(GravityCompat.START);
                 break;
+
+            case R.id.nav_public_booklist:
+                intent = new Intent(this, PublicBooklistActivity.class);
+                drawer.closeDrawer(GravityCompat.START);
+                break;
         }
         this.startActivity(intent);
         return true;

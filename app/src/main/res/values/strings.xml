@@ -10,12 +10,15 @@
     <string name="nav_open">Open Navigation Bar</string>
     <string name="nav_close">Close Navigation Bar</string>
     <string name="username"><u>username</u></string>
+    <string name="nav_public_booklist">Public Booklist</string>
+    <string name="nav_balance">Balance</string>
+    <string name="nav_workshops">Local Workshops</string>
 
-        <string-array name="search_catagory_array">
-            <item>author</item>
-            <item>publisher</item>
-            <item>title</item>
-            <item>category</item>
-        </string-array>
+    <string-array name="search_catagory_array">
+        <item>author</item>
+        <item>publisher</item>
+        <item>title</item>
+        <item>category</item>
+    </string-array>
 
 </resources>

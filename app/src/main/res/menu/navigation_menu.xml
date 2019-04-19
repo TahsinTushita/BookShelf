@@ -30,6 +30,20 @@
         android:icon="@drawable/help_and_support"
         />
 
+    <item
+        android:title="@string/nav_public_booklist"
+        android:id="@+id/nav_public_booklist"
+        />
+    <item
+        android:title="@string/nav_balance"
+        android:id="@+id/nav_balance"
+        />
+
+    <item
+        android:title="@string/nav_workshops"
+        android:id="@+id/nav_workshops"
+        />
+
 
     <item android:title="Info">
         <menu>
