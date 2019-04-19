@@ -57,7 +57,6 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
     private DrawerLayout drawer;
     private ActionBarDrawerToggle drawerToggle;
     private ArrayList<String> userBookList;
-    private Spinner searchItemSpinner;
 
     private TextView drawerUserName;
     @Override
@@ -89,7 +88,6 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         adapter = new BookAdapter(this,bookArrayList,listener);
         recyclerView.setAdapter(adapter);
         userBookList = new ArrayList<>();
-        searchItemSpinner = findViewById(R.id.searchItemSpinner);
 
         profileInfoArrayList = new ArrayList<>();
 
@@ -131,10 +129,8 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
                 item.setTitle(query);
                 mHistoryDatabase.addItem(item);
 
-                String st = searchItemSpinner.getSelectedItem().toString();
                 Intent intent = new Intent(HomePageActivity.this,SearchResults.class);
                 intent.putExtra("searchText",query.toString());
-                intent.putExtra("searchType",st);
                 startActivity(intent);
                 return true;
             }

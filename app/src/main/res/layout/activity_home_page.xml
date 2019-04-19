@@ -41,15 +41,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_behavior="com.lapism.searchview.widget.SearchBehavior"
-            app:search_hint="Book name"
+            app:search_hint="Input Book, Author, Publisher or Category "
             app:search_hint_color="@color/colorPrimary"
             />
-        <Spinner
-            android:id="@+id/searchItemSpinner"
-            android:entries="@array/search_catagory_array"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </Spinner>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
