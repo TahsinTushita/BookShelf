@@ -31,8 +31,12 @@
         />
 
     <item
-        android:title="@string/nav_public_booklist"
+        android:title="Wishlist"
         android:id="@+id/nav_public_booklist"
+        />
+    <item
+        android:title="Bookmarks"
+        android:id="@+id/nav_bookmark"
         />
     <item
         android:title="@string/nav_balance"
@@ -60,7 +64,7 @@
                 />
 
             <item
-                android:title="Wish List"
+                android:title="Public Booklist"
                 android:id="@+id/wishListid"
                 android:icon="@drawable/wishlist"
                 />

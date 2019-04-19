@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -5,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".SignupActivity">
+    tools:context=".AllBooksActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -19,7 +20,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Wish List"
+            android:text="All Books"
             android:textSize="40dp"
             android:fontFamily="@font/justanotherhand"
             />
@@ -28,9 +29,10 @@
 
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/public_booklist_recyclerview"
+        android:id="@+id/bookmarks_recyclerView"
         android:elevation="5dp"
         android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-    </LinearLayout>
+
+</LinearLayout>

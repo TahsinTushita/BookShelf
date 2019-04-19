@@ -53,7 +53,7 @@ public class BookProfile extends AppCompatActivity implements View.OnClickListen
     private TextView bookAuthor;
     private TextView bookTitle,bookCategory,bookPublisher;
     private Button availability;
-    private Button booklistbtn,wishlishbtn,publicBooklistbtn,sellerbtn;
+    private Button booklistbtn,wishlishbtn,publicBooklistbtn,sellerbtn,bookmarkbtn;
     private TextView drawerUserName;
     private TextView popupReview;
     TextView noReviewText;
@@ -118,8 +118,10 @@ public class BookProfile extends AppCompatActivity implements View.OnClickListen
         sellerbtn = findViewById(R.id.becomeSeller);
         bookCategory = findViewById(R.id.bookCategory);
         bookPublisher = findViewById(R.id.bookPublisher);
+        bookmarkbtn=findViewById(R.id.bookmarkId);
 
         availability.setOnClickListener(this);
+        bookmarkbtn.setOnClickListener(this);
         booklistbtn.setOnClickListener(this);
         wishlishbtn.setOnClickListener(this);
         publicBooklistbtn.setOnClickListener(this);
@@ -305,6 +307,10 @@ public class BookProfile extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         int id = v.getId();
+
+        if(id==R.id.bookmarkId){
+            startActivity(new Intent(BookProfile.this,AddBookmark.class).putExtra("bookObject",book));
+        }
 
         if (id==R.id.becomeSeller){
             startActivity(new Intent(BookProfile.this,BecomeSeller.class)

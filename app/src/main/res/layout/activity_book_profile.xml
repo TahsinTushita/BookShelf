@@ -169,9 +169,9 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
                         android:layout_marginTop="13dp"
-                        />
+                        android:layout_marginRight="5dp"
+                        android:src="@drawable/wishlist" />
 
                     <Button
                         android:background="@android:color/transparent"
@@ -179,7 +179,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/patrickhandsc"
                         android:id="@+id/addToPublicList"
-                        android:text="Add to public booklist"
+                        android:text="Add to Wishlist"
                         style="@style/Base.V7.Widget.AppCompat.EditText"
                         />
 
@@ -249,12 +249,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="13dp"
-                    android:layout_marginRight="5dp"
-                    android:src="@drawable/wishlist" />
 
                 <Button
                     android:id="@+id/wishListid"
@@ -263,7 +257,30 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/patrickhandsc"
-                    android:text="Add to wishlist" />
+                    android:text="Add to public booklist" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginRight="5dp"
+                     />
+
+                <Button
+                    android:id="@+id/bookmarkId"
+                    style="@style/Base.V7.Widget.AppCompat.EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/patrickhandsc"
+                    android:text="Bookmark" />
 
             </LinearLayout>
 
