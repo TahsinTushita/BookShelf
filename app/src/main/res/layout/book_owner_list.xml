@@ -15,6 +15,7 @@
         >
 
         <ImageView
+            android:id="@+id/image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/address"
@@ -34,14 +35,6 @@
             android:hint="Name"
             android:singleLine="false" />
 
-        <Button
-            android:id="@+id/reqBtn"
-            android:fontFamily="@font/justanotherhand"
-            android:text="Request"
-            android:background="@drawable/round_corner_bg"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
     </LinearLayout>
 
 

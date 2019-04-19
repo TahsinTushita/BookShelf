@@ -58,6 +58,7 @@ public class BookProfile extends AppCompatActivity implements View.OnClickListen
     private TextView popupReview;
     TextView noReviewText;
     private String userName;
+    private ProfileInfo profileInfo1;
 
     private RecyclerView reviewView;
     private BookReviewAdapter reviewAdapter;
@@ -68,6 +69,8 @@ public class BookProfile extends AppCompatActivity implements View.OnClickListen
     private NavigationView navigationView;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle drawerToggle;
+    private Integer shareaddressint=-1;
+    private DatabaseReference database;
 
     private Button findOwnerBtn;
     public static Book currentBook;
@@ -129,19 +132,20 @@ public class BookProfile extends AppCompatActivity implements View.OnClickListen
         bookCategory.setText(book.getCategory());
         bookPublisher.setText(book.getPublisher());
 
+
         userName = "Anonymous";
 
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if(firebaseUser != null)
         userName = firebaseUser.getEmail();
         userName = userName.substring(0,userName.lastIndexOf('@'));
+        profileInfo=new ProfileInfo();
 
         reviewDatabase = FirebaseDatabase.getInstance().getReference("Books").child(book.getParent()).child("reviews");
         bookDatabaseReference = FirebaseDatabase.getInstance().getReference("Books").
                 child(book.getParent()).child("users");
         profileDatabaseReference = FirebaseDatabase.getInstance().getReference("Profile")
                 .child(userName).child("booklist");
-
 
 
         //String adrr = profileDatabase.getDatabase().toString();
@@ -308,37 +312,78 @@ public class BookProfile extends AppCompatActivity implements View.OnClickListen
         }
 
         if(id==R.id.bookListid) {
+
             addToBooklist();
-            AlertDialog alertDialog = new AlertDialog.Builder(BookProfile.this).create();
-            alertDialog.setTitle("Alert");
-            alertDialog.setMessage("Do you want to make this book available to borrow?");
-            alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "NO", new DialogInterface.OnClickListener() {
+
+            Query reference=FirebaseDatabase.getInstance().getReference("Profile").orderByChild("username").equalTo(LoginActivity.user);
+            reference.addChildEventListener(new ChildEventListener() {
                 @Override
-                public void onClick(DialogInterface dialog, int which) {
+                public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                    profileInfo=dataSnapshot.getValue(ProfileInfo.class);
+                    shareaddressint=profileInfo.getShareaddress();
 
-                    newUser = bookDatabaseReference.child(userName);
-                    newUser.child("username").setValue(userName);
-                    newUser.child("availability").setValue(0);
-                    profileDatabaseReference.child(book.getParent()).child("availability").setValue(0);//0 not available 1 available
 
-                    dialog.dismiss();
-                    Toast.makeText(BookProfile.this, "Added to your Book list", Toast.LENGTH_SHORT).show();
+                    AlertDialog alertDialog = new AlertDialog.Builder(BookProfile.this).create();
+                    alertDialog.setTitle("Alert");
+                    alertDialog.setMessage("Do you want to make this book available to borrow?");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "NO", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            newUser = bookDatabaseReference.child(userName);
+                            newUser.child("username").setValue(userName);
+                            newUser.child("availability").setValue(0);
+                            profileDatabaseReference.child(book.getParent()).child("availability").setValue(0);
+                            if(shareaddressint==0)
+                                newUser.child("shareaddress").setValue(0);
+                            else if(shareaddressint==1)
+                                newUser.child("shareaddress").setValue(1);
+                            //0 not available 1 available
+
+                            dialog.dismiss();
+                            Toast.makeText(BookProfile.this, "Added to your Book list", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "YES", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            newUser = bookDatabaseReference.child(userName);
+                            newUser.child("username").setValue(userName);
+                            newUser.child("availability").setValue(1);
+                            profileDatabaseReference.child(book.getParent()).child("availability").setValue(1);//0 not available 1 available
+                            if(shareaddressint==0)
+                                newUser.child("shareaddress").setValue(0);
+                            else if(shareaddressint==1)
+                                newUser.child("shareaddress").setValue(1);
+                            dialog.dismiss();
+                            Toast.makeText(BookProfile.this, "Added to your Book list", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    alertDialog.show();
+
+                }
+
+                @Override
+                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                }
+
+                @Override
+                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
                 }
             });
-            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "YES", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    newUser = bookDatabaseReference.child(userName);
-                    newUser.child("username").setValue(userName);
-                    newUser.child("availability").setValue(1);
-                    profileDatabaseReference.child(book.getParent()).child("availability").setValue(1);//0 not available 1 available
-
-                    dialog.dismiss();
-                    Toast.makeText(BookProfile.this, "Added to your Book list", Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            alertDialog.show();
         }
 
         if(id==R.id.wishListid) {

@@ -2,13 +2,22 @@ package com.sust.bookshelf;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseException;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
 
@@ -51,16 +60,54 @@ public class BookOwnerAdapter extends RecyclerView.Adapter<BookOwnerAdapter.Book
     class BookViewHolder extends RecyclerView.ViewHolder {
 
         private TextView textView;
-        private Button reqBtn;
+        private ImageView imageView;
 
         public BookViewHolder(@NonNull View itemView) {
             super(itemView);
+            imageView = itemView.findViewById(R.id.image);
             textView = itemView.findViewById(R.id.ownerName);
-            reqBtn = itemView.findViewById(R.id.reqBtn);
         }
 
-        public void setDetails(ProfileInfo profileInfo) {
-            textView.setText(profileInfo.getUsername());
+        public void setDetails(final ProfileInfo profileInfo) {
+        Query query = FirebaseDatabase.getInstance().getReference("Profile").orderByChild("username").equalTo(profileInfo.getUsername());
+        query.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                try {
+                    ProfileInfo nprofile = dataSnapshot.getValue(ProfileInfo.class);
+                    if (profileInfo.getAvailability() == 0 || nprofile.getShareaddress() == 0) {
+
+                        imageView.setVisibility(View.GONE);
+
+                    }
+                    if(nprofile.getName() != null )
+                        textView.setText(nprofile.getName());
+                    else textView.setText(nprofile.getUsername());
+                } catch (Exception e) {
+                    System.out.println(dataSnapshot.toString());
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         }
 
         public void bind(ProfileInfo profileInfo,OnClickListener listener) {

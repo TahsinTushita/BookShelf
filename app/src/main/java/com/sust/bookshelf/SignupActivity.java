@@ -104,7 +104,11 @@ public class SignupActivity extends AppCompatActivity {
                                     profileDatabase.child("address").setValue(address);
                                     profileDatabase.child("email").setValue(email);
                                     profileDatabase.child("name").setValue(name);
-                                    profileDatabase.child("shareaddress").setValue(shareable);
+                                    if(shareAddressCheckBox.isChecked()){
+                                        profileDatabase.child("shareaddress").setValue(1);
+                                    }
+                                    else
+                                        profileDatabase.child("shareaddress").setValue(0);
 
                                     startActivity(new Intent(SignupActivity.this,LoginActivity.class));
                                     finish();

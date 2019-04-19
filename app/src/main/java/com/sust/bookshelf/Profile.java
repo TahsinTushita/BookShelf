@@ -40,6 +40,7 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
     private ProfileInfo profileInfo = new ProfileInfo();
     private DatabaseReference profileInfodatabase,profileDatabase;
     Button requestBtn,buyBtn;
+    private String profileEmail,firstString,string,lastString;
 
     private ImageView profilePhoto;
 
@@ -86,12 +87,12 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
             @Override
             public void onClick(View view) {
                 DatabaseReference db = profileInfodatabase.child(getIntent().getStringExtra(EXTRA_PROFILE_ID)).child("booklist")
-                        .child(BookProfile.currentBook.getParent()).child("requests").child(LoginActivity.user);
+                        .child(BookProfile.currentBook.getParent()).child("buyrequests").child(LoginActivity.user);
                 db.child("username").setValue(LoginActivity.user);
                 db.child("parent").setValue(BookProfile.currentBook.getParent());
                 db.child("bookTitle").setValue(BookProfile.currentBook.getTitle());
 
-                db = profileDatabase.child(LoginActivity.user).child("requestedBooks")
+                db = profileDatabase.child(LoginActivity.user).child("requesttobuy")
                         .child(BookProfile.currentBook.getParent());
                 db.child("username").setValue(getIntent().getStringExtra(EXTRA_PROFILE_ID));
                 db.child("bookTitle").setValue(BookProfile.currentBook.getTitle());
@@ -127,8 +128,16 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
                     ProfileInfo info = postSnapshot.getValue(ProfileInfo.class);
                     profileInfo = info;
                     username.setText(profileInfo.getName());
-                    address.setText(profileInfo.getAddress());
-                    email.setText(profileInfo.getEmail());
+                    //address.setText(profileInfo.getAddress());
+                    profileEmail=profileInfo.getEmail();
+                    firstString=profileEmail.substring(0,1);
+                    string=profileEmail.substring(1,profileEmail.lastIndexOf("@"));
+                    lastString=profileEmail.substring(profileEmail.indexOf("@"),profileEmail.length());
+                    String email2=firstString;
+                    for(int i=0;i<string.length();i++)
+                        email2+="*";
+                    email2+=lastString;
+                    email.setText(email2);
                     Picasso.get().load(profileInfo.getProfilephoto()).into(profilePhoto);
                 }
             }
