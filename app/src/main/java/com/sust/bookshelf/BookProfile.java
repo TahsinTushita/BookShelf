@@ -181,7 +181,6 @@ public class BookProfile extends AppCompatActivity implements View.OnClickListen
             if(dataSnapshot.exists()){
                 usersArrayList.clear();
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-
                     Users user = snapshot.getValue(Users.class);
                     if(user.getAvailability() == 1)
                     usersArrayList.add(user);
@@ -374,6 +373,7 @@ public class BookProfile extends AppCompatActivity implements View.OnClickListen
                     dialog.dismiss();
                     Toast.makeText(BookProfile.this, "existing list", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(BookProfile.this,AddToExistingBooklist.class);
+                    intent.putExtra("bookObject",book);
                     startActivity(intent);
                 }
             });

@@ -27,11 +27,18 @@
 
     </android.support.v7.widget.Toolbar>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/existing_booklist_recyclerView"
-        android:elevation="5dp"
-        android:layout_marginBottom="5dp"
+    <Spinner
+        android:layout_gravity="center"
+        android:id="@+id/existing_bookslist_spinner"
+        android:padding="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    <Button
+        android:layout_gravity="center"
+        android:text="Add to list"
+        android:id="@+id/addBtn"
+        android:background="@drawable/round_corner_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
