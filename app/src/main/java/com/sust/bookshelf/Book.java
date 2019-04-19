@@ -10,6 +10,26 @@ public class Book implements Serializable{
     String imgurl;
     String category;
     String publisher;
+    String listRef;
+
+    public Book(String title, String author, String topReview, String parent, String imgurl, String category, String publisher, String listRef) {
+        this.title = title;
+        this.author = author;
+        this.topReview = topReview;
+        this.parent = parent;
+        this.imgurl = imgurl;
+        this.category = category;
+        this.publisher = publisher;
+        this.listRef = listRef;
+    }
+
+    public String getListRef() {
+        return listRef;
+    }
+
+    public void setListRef(String listRef) {
+        this.listRef = listRef;
+    }
 
     public String getCategory() {
         return category;
@@ -24,16 +44,6 @@ public class Book implements Serializable{
     }
 
     public void setPublisher(String publisher) {
-        this.publisher = publisher;
-    }
-
-    public Book(String title, String author, String topReview, String parent, String imgurl, String category, String publisher) {
-        this.title = title;
-        this.author = author;
-        this.topReview = topReview;
-        this.parent = parent;
-        this.imgurl = imgurl;
-        this.category = category;
         this.publisher = publisher;
     }
 

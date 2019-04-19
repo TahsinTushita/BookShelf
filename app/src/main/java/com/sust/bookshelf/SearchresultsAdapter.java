@@ -105,6 +105,7 @@ public class SearchresultsAdapter extends RecyclerView.Adapter<SearchresultsAdap
                         removeAt(getAdapterPosition());
                         removeFromBooklistDatabase(book);
                         removeFromWishlistDatabase(book);
+                        removeFromPublicBookListDatabase(book);
                         Toast.makeText(v.getContext(), "Book Has Been Removed", Toast.LENGTH_LONG).show();
                     }
                 });
@@ -115,6 +116,15 @@ public class SearchresultsAdapter extends RecyclerView.Adapter<SearchresultsAdap
                 }
             });
 
+
+        }
+
+        private void removeFromPublicBookListDatabase(Book book) {
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Profile")
+                    .child(LoginActivity.user)
+                    .child("publicbooklist/"+book.listRef+"/")
+                    .child(book.getParent());
+            databaseReference.setValue(null);
 
         }
     }

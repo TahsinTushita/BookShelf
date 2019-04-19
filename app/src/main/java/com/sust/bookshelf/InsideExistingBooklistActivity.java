@@ -1,5 +1,6 @@
 package com.sust.bookshelf;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -25,7 +26,15 @@ public class InsideExistingBooklistActivity extends AppCompatActivity {
     private RecyclerView inside_booklist_recyclerview;
     private ArrayList<Book> books;
     private SearchresultsAdapter listAdapter;
-    private SearchresultsAdapter.OnItemClickListener listener;
+    SearchresultsAdapter.OnItemClickListener listener = new SearchresultsAdapter.OnItemClickListener() {
+        @Override
+        public void onItemClick(Book book) {
+            Intent i = new Intent(InsideExistingBooklistActivity.this
+                    ,BookProfile.class);
+            i.putExtra("bookObject",book);
+            startActivity(i);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +59,7 @@ public class InsideExistingBooklistActivity extends AppCompatActivity {
                         @Override
                         public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                             Book nbook = dataSnapshot.getValue(Book.class);
+                            nbook.setListRef(existingBooklist.getListname());
                             books.add(nbook);
                             inside_booklist_recyclerview.setAdapter(listAdapter);
                             listAdapter.notifyDataSetChanged();
