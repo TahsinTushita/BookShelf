@@ -120,12 +120,13 @@ public class LoginActivity extends AppCompatActivity {
     private void addUserBookList(String username) {
         username = username.toLowerCase().trim();
         DatabaseReference query = FirebaseDatabase.getInstance().getReference("Profile/"+username+"/booklist");
-        query.addValueEventListener(new ValueEventListener() {
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 profileDataSnapshot = dataSnapshot;
                 startActivity(new Intent(LoginActivity.this, HomePageActivity.class));
 //                Toast.makeText(LoginActivity.this,dataSnapshot.toString(),Toast.LENGTH_LONG).show();
+
             }
 
             @Override
