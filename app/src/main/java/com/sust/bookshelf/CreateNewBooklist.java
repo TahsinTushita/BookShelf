@@ -50,6 +50,7 @@ public class CreateNewBooklist extends AppCompatActivity {
                 listName = booklistName.getText().toString().trim();
                 reference = FirebaseDatabase.getInstance().getReference("Profile").child(userName).child("publicbooklist");
                 reference.child(listName).child(book.getParent()).child("parent").setValue(book.getParent());
+                reference.child(listName).child("listname").setValue(listName);
                 Toast.makeText(CreateNewBooklist.this,"Added to your new public booklist "+listName,Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(CreateNewBooklist.this,HomePageActivity.class);
                 startActivity(intent);

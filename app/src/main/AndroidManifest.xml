@@ -25,7 +25,8 @@
         android:roundIcon="@mipmap/bookcase"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BecomeSeller"></activity>
+        <activity android:name=".ExistingBooklistAdapter"></activity>
+        <activity android:name=".BecomeSeller" />
         <activity android:name=".AddToExistingBooklist" />
         <activity android:name=".CreateNewBooklist" />
         <activity android:name=".UserManual" />
