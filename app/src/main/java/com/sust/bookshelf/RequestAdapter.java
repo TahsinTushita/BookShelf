@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -60,11 +61,22 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestH
         private TextView username,bookTitle,status;
 
 
+        private TextView returnTextView;
+        private LinearLayout linearLayout;
+        private EditText returnEditText;
+
+
+
         public RequestHolder(@NonNull View itemView) {
             super(itemView);
             username = itemView.findViewById(R.id.userName);
             bookTitle = itemView.findViewById(R.id.bookTitle);
             status = itemView.findViewById(R.id.statusid);
+
+            returnEditText = itemView.findViewById(R.id.returnEditText);
+            returnTextView = itemView.findViewById(R.id.returnTextView);
+            linearLayout = itemView.findViewById(R.id.returnLinearLayout);
+
         }
 
         public void setDetails(Request request){
@@ -80,6 +92,8 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestH
             }
             else if(request.getStatus()==2) {
                 status.setText("confirm sent");
+                linearLayout.setVisibility(View.VISIBLE);
+                returnEditText.setVisibility(View.VISIBLE);
                 status.setTextColor(ContextCompat.getColor(context,android.R.color.holo_blue_dark));
             }
             else if(request.getStatus()==3) {
