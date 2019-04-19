@@ -10,4 +10,12 @@
     <string name="nav_open">Open Navigation Bar</string>
     <string name="nav_close">Close Navigation Bar</string>
     <string name="username"><u>username</u></string>
+
+        <string-array name="search_catagory_array">
+            <item>author</item>
+            <item>publisher</item>
+            <item>title</item>
+            <item>category</item>
+        </string-array>
+
 </resources>

@@ -28,6 +28,7 @@ public class SearchResults extends AppCompatActivity {
     private String searchText;
 
     public static final String EXTRA_SEARCHID = "searchText";
+    private String searchType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +48,9 @@ public class SearchResults extends AppCompatActivity {
         recyclerView.setAdapter(searchresultsAdapter);
 
         searchText = (String) getIntent().getExtras().get(EXTRA_SEARCHID);
-
+        searchType = (String) getIntent().getExtras().get("searchType");
         DatabaseReference mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
-        Query query = mFirebaseDatabaseReference.child("Books").orderByChild("title").startAt(searchText.toUpperCase()).endAt(searchText.toLowerCase()+"\uf8ff");
+        Query query = mFirebaseDatabaseReference.child("Books").orderByChild(searchType).startAt(searchText.toUpperCase()).endAt(searchText.toLowerCase()+"\uf8ff");
         query.addValueEventListener(valueEventListener);
     }
 
@@ -63,7 +64,14 @@ public class SearchResults extends AppCompatActivity {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         Book book = snapshot.getValue(Book.class);
-                        bookArrayList.add(book);
+                        if(searchType.equals("title") && book.getTitle().contains(searchText))
+                            bookArrayList.add(book);
+                        else if(searchType.equals("publisher") && book.getPublisher().contains(searchText))
+                            bookArrayList.add(book);
+                        if(searchType.equals("author") && book.getAuthor().contains(searchText))
+                            bookArrayList.add(book);
+                        if(searchType.equals("catagory") && book.getCategory().contains(searchText))
+                            bookArrayList.add(book);
                     }
                     SearchresultsAdapter adapter = new SearchresultsAdapter(SearchResults.this, bookArrayList,listener);
                     recyclerView.setAdapter(adapter);

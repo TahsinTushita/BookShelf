@@ -16,7 +16,9 @@ import android.support.v7.widget.Toolbar;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,6 +35,7 @@ import com.lapism.searchview.widget.SearchAdapter;
 import com.lapism.searchview.widget.SearchItem;
 import com.lapism.searchview.widget.SearchView;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,6 +58,8 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
     private NavigationView navigationView;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle drawerToggle;
+    private ArrayList<String> userBookList;
+    private Spinner searchItemSpinner;
 
     private TextView drawerUserName;
     @Override
@@ -85,6 +90,8 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
         bookArrayList = new ArrayList<>();
         adapter = new BookAdapter(this,bookArrayList,listener);
         recyclerView.setAdapter(adapter);
+        userBookList = new ArrayList<>();
+        searchItemSpinner = findViewById(R.id.searchItemSpinner);
 
         profileInfoArrayList = new ArrayList<>();
 
@@ -126,8 +133,10 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
                 item.setTitle(query);
                 mHistoryDatabase.addItem(item);
 
+                String st = searchItemSpinner.getSelectedItem().toString();
                 Intent intent = new Intent(HomePageActivity.this,SearchResults.class);
                 intent.putExtra("searchText",query.toString());
+                intent.putExtra("searchType",st);
                 startActivity(intent);
                 return true;
             }
@@ -136,8 +145,6 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
             public void onQueryTextChange(CharSequence newText) {
 
             }
-
-
         });
 
         SearchAdapter searchAdapter = new SearchAdapter(this);
@@ -158,17 +165,22 @@ public class HomePageActivity extends AppCompatActivity implements NavigationVie
 
         searchView.setAdapter(searchAdapter);
 
+        if(LoginActivity.profileDataSnapshot != null)
+            for(DataSnapshot ds : LoginActivity.profileDataSnapshot.getChildren()) {
+                userBookList.add(ds.child("parent").getValue().toString());
+            }
+
         Query database = FirebaseDatabase.getInstance().getReference("TopBooks").orderByChild("count");
         database.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                System.out.println(dataSnapshot.getKey());
-                Query query = FirebaseDatabase.getInstance().getReference("Books");
+                final Query query = FirebaseDatabase.getInstance().getReference("Books");
                 query.orderByChild("parent").equalTo(dataSnapshot.getKey()).addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                         if (dataSnapshot.exists()) {
                             Book book = dataSnapshot.getValue(Book.class);
+                            if(!userBookList.contains(book.getParent()) && bookArrayList.size() < 11)
                             bookArrayList.add(0,book);
                             BookAdapter adapter = new BookAdapter(HomePageActivity.this,bookArrayList,listener);
                             recyclerView.setAdapter(adapter);
