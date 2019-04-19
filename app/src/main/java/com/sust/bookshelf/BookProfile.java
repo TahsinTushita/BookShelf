@@ -54,7 +54,7 @@ public class BookProfile extends AppCompatActivity implements View.OnClickListen
     private TextView bookTitle;
     private TextView bookISBN;
     private Button availability;
-    private Button booklistbtn,wishlishbtn;
+    private Button booklistbtn,wishlishbtn,publicBooklistbtn,sellerbtn;
     private TextView drawerUserName;
     private TextView popupReview;
     TextView noReviewText;
@@ -108,10 +108,14 @@ public class BookProfile extends AppCompatActivity implements View.OnClickListen
         availability = findViewById(R.id.checkAvailability);
         booklistbtn = findViewById(R.id.bookListid);
         wishlishbtn = findViewById(R.id.wishListid);
+        publicBooklistbtn = findViewById(R.id.addToPublicList);
+        sellerbtn = findViewById(R.id.becomeSeller);
 
         availability.setOnClickListener(this);
         booklistbtn.setOnClickListener(this);
         wishlishbtn.setOnClickListener(this);
+        publicBooklistbtn.setOnClickListener(this);
+        sellerbtn.setOnClickListener(this);
 
         Picasso.get().load(book.getImgurl()).into(bookCover);
 
@@ -349,6 +353,32 @@ public class BookProfile extends AppCompatActivity implements View.OnClickListen
             startActivity(intent);
             if(mapWaitDialog.isShowing())
                 mapWaitDialog.dismiss();
+        }
+        if(id==R.id.addToPublicList){
+            addToBooklist();
+            AlertDialog alertDialog = new AlertDialog.Builder(BookProfile.this).create();
+            alertDialog.setTitle("Alert");
+            alertDialog.setMessage("Do you want to create a new public booklist or add this to an existing one?");
+            alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Create new list", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    dialog.dismiss();
+                    Intent intent = new Intent(BookProfile.this,CreateNewBooklist.class).putExtra("bookObject",book);
+                    startActivity(intent);
+                }
+            });
+            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Add to existing list", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    Toast.makeText(BookProfile.this, "existing list", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(BookProfile.this,AddToExistingBooklist.class);
+                    startActivity(intent);
+                }
+            });
+
+            alertDialog.show();
         }
     }
 

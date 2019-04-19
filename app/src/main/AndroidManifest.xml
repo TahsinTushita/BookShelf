@@ -25,11 +25,14 @@
         android:roundIcon="@mipmap/bookcase"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.sust.bookshelf.UserManual"></activity>
-        <activity android:name="com.sust.bookshelf.AllBooksActivity" />
-        <activity android:name="com.sust.bookshelf.RequestForBookActivity" />
-        <activity android:name="com.sust.bookshelf.LentBooks" />
-        <activity android:name="com.sust.bookshelf.BorrowedBooks" />
+        <activity android:name=".BecomeSeller"></activity>
+        <activity android:name=".AddToExistingBooklist" />
+        <activity android:name=".CreateNewBooklist" />
+        <activity android:name=".UserManual" />
+        <activity android:name=".AllBooksActivity" />
+        <activity android:name=".RequestForBookActivity" />
+        <activity android:name=".LentBooks" />
+        <activity android:name=".BorrowedBooks" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -42,30 +45,30 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name="com.sust.bookshelf.RequestedBooksActivity" />
-        <activity android:name="com.sust.bookshelf.RequestsActivity" />
-        <activity android:name="com.sust.bookshelf.UpdateProfile" />
-        <activity android:name="com.sust.bookshelf.LoginActivity">
+        <activity android:name=".RequestedBooksActivity" />
+        <activity android:name=".RequestsActivity" />
+        <activity android:name=".UpdateProfile" />
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.sust.bookshelf.HomePageActivity" />
-        <activity android:name="com.sust.bookshelf.SearchResults" />
-        <activity android:name="com.sust.bookshelf.BookProfile" />
+        <activity android:name=".HomePageActivity" />
+        <activity android:name=".SearchResults" />
+        <activity android:name=".BookProfile" />
 
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name="com.sust.bookshelf.PostReview" />
-        <activity android:name="com.sust.bookshelf.MapActivity" />
-        <activity android:name="com.sust.bookshelf.Profile" />
-        <activity android:name="com.sust.bookshelf.BookList" />
-        <activity android:name="com.sust.bookshelf.WishList" />
-        <activity android:name="com.sust.bookshelf.SignupActivity" />
+        <activity android:name=".PostReview" />
+        <activity android:name=".MapActivity" />
+        <activity android:name=".Profile" />
+        <activity android:name=".BookList" />
+        <activity android:name=".WishList" />
+        <activity android:name=".SignupActivity" />
     </application>
 
 </manifest>

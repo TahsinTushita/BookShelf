@@ -36,6 +36,7 @@
 
         </android.support.v7.widget.Toolbar>
 
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:background="@android:color/background_light"
@@ -76,6 +77,24 @@
                     android:textStyle="bold"
                     android:layout_marginBottom="10dp"
                     android:text="AUTHOR" />
+                <TextView
+                    android:id="@+id/bookCategory"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"
+                    android:text="Category" />
+                <TextView
+                    android:id="@+id/bookPublisher"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"
+                    android:text="Publisher" />
 
 
                 <LinearLayout
@@ -154,6 +173,58 @@
                         android:fontFamily="@font/patrickhandsc"
                         android:id="@+id/checkAvailability"
                         android:text="Check availability"
+                        style="@style/Base.V7.Widget.AppCompat.EditText"
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="13dp"
+                        />
+
+                    <Button
+                        android:background="@android:color/transparent"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/patrickhandsc"
+                        android:id="@+id/addToPublicList"
+                        android:text="Add to public booklist"
+                        style="@style/Base.V7.Widget.AppCompat.EditText"
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="13dp"
+                        />
+
+                    <Button
+                        android:background="@android:color/transparent"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/patrickhandsc"
+                        android:id="@+id/becomeSeller"
+                        android:text="Become a seller"
                         style="@style/Base.V7.Widget.AppCompat.EditText"
                         />
 
