@@ -76,6 +76,27 @@
         android:background="@drawable/round_corner_bg1"
         android:id="@+id/reviewDesc" />
 
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:fontFamily="@font/patrickhandsc"
+        android:text="Rate the Book"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        />
+
+
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:stepSize="1.0"
+        android:id="@+id/ratingbar"
+        />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -87,6 +108,7 @@
         android:fontFamily="@font/justanotherhand"
         android:textSize="35dp"
         android:onClick="startPosting"
+        />oid:onClick="startPosting"
         />
 
 </LinearLayout>

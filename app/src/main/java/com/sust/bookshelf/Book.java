@@ -11,8 +11,27 @@ public class Book implements Serializable{
     String category;
     String publisher;
     String listRef;
+    Float rating;
 
-    public Book(String title, String author, String topReview, String parent, String imgurl, String category, String publisher, String listRef) {
+    public Float getRating() {
+        return rating;
+    }
+
+    public void setRating(Float rating) {
+        this.rating = rating;
+    }
+
+    public Float getRatecount() {
+        return ratecount;
+    }
+
+    public void setRatecount(Float ratecount) {
+        this.ratecount = ratecount;
+    }
+
+    Float ratecount;
+
+    public Book(String title, String author, String topReview, String parent, String imgurl, String category, String publisher, String listRef, Float rating, Float ratecount) {
         this.title = title;
         this.author = author;
         this.topReview = topReview;
@@ -21,6 +40,8 @@ public class Book implements Serializable{
         this.category = category;
         this.publisher = publisher;
         this.listRef = listRef;
+        this.rating = rating;
+        this.ratecount = ratecount;
     }
 
     public String getListRef() {

@@ -51,7 +51,7 @@ public class BookProfile extends AppCompatActivity implements View.OnClickListen
     private ProgressDialog mapWaitDialog;
     private ImageView bookCover;
     private TextView bookAuthor;
-    private TextView bookTitle,bookCategory,bookPublisher;
+    private TextView bookTitle,bookCategory,bookPublisher,bookRating;
     private Button availability;
     private Button booklistbtn,wishlishbtn,publicBooklistbtn,sellerbtn,bookmarkbtn;
     private TextView drawerUserName;
@@ -74,6 +74,7 @@ public class BookProfile extends AppCompatActivity implements View.OnClickListen
 
     private Button findOwnerBtn;
     public static Book currentBook;
+    Float rating;
 
     private View rootview;
 
@@ -109,6 +110,7 @@ public class BookProfile extends AppCompatActivity implements View.OnClickListen
         currentBook = book;
 
         bookCover = findViewById(R.id.bookCover);
+        bookRating=findViewById(R.id.bookRating);
         bookTitle = findViewById(R.id.bookTitle);
         bookAuthor = findViewById(R.id.bookAuthor);
         availability = findViewById(R.id.checkAvailability);
@@ -128,11 +130,13 @@ public class BookProfile extends AppCompatActivity implements View.OnClickListen
         sellerbtn.setOnClickListener(this);
 
         Picasso.get().load(book.getImgurl()).into(bookCover);
+        rating=book.getRating()/book.getRatecount();
 
         bookAuthor.setText(book.getAuthor());
         bookTitle.setText(book.getTitle());
         bookCategory.setText(book.getCategory());
         bookPublisher.setText(book.getPublisher());
+        bookRating.setText(rating.toString());
 
 
         userName = "Anonymous";
@@ -195,7 +199,7 @@ public class BookProfile extends AppCompatActivity implements View.OnClickListen
                 usersArrayList.clear();
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     Users user = snapshot.getValue(Users.class);
-                    if(user.getAvailability() == 1)
+                    if(user.getAvailability() == 1 && user.getShareaddress()==1)
                     usersArrayList.add(user);
                 }
             }

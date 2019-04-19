@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RatingBar;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,6 +29,8 @@ public class PostReview extends AppCompatActivity {
     private Book book;
     private String bookParent;
     private String userName;
+    private RatingBar ratingBar;
+    private Float rating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,7 @@ public class PostReview extends AppCompatActivity {
         reviewTitle = findViewById(R.id.reviewTitle) ;
         reviewDesc = findViewById(R.id.reviewDesc);
         postBtn = findViewById(R.id.postBtn);
+        ratingBar=findViewById(R.id.ratingbar);
 
         progressDialog = new ProgressDialog(this);
         book = (Book) getIntent().getExtras().getSerializable(EXTRA_BOOKPARENT);
@@ -62,6 +67,13 @@ public class PostReview extends AppCompatActivity {
         if(firebaseUser != null)
         userName = firebaseUser.getEmail();
         userName = userName.substring(0,userName.lastIndexOf('@'));
+
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                rating=ratingBar.getRating();
+            }
+        });
 
     }
 
@@ -86,6 +98,10 @@ public class PostReview extends AppCompatActivity {
         recentReviewPost.child("userName").setValue(userName);
         recentReviewPost.child("reviewText").setValue(postDesc);
         progressDialog.dismiss();
+
+        DatabaseReference reference=FirebaseDatabase.getInstance().getReference("Books").child(book.getParent());
+        reference.child("rating").setValue(ratingBar.getRating()+book.getRating());
+        reference.child("ratecount").setValue(book.getRatecount()+1);
 
         onBackPressed();
 
