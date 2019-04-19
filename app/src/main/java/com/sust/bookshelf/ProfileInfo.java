@@ -8,13 +8,23 @@ public class ProfileInfo implements Serializable {
     String username;
     String address;
     String email;
+    boolean shareaddress;
 
-    public ProfileInfo(String name, String username, String address, String email, String profilephoto) {
+    public ProfileInfo(String name, String username, String address, String email, boolean shareaddress, String profilephoto) {
         this.name = name;
         this.username = username;
         this.address = address;
         this.email = email;
+        this.shareaddress = shareaddress;
         this.profilephoto = profilephoto;
+    }
+
+    public boolean isShareaddress() {
+        return shareaddress;
+    }
+
+    public void setShareaddress(boolean shareaddress) {
+        this.shareaddress = shareaddress;
     }
 
     String profilephoto;

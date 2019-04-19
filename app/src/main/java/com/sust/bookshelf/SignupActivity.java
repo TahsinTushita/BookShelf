@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -21,11 +22,13 @@ import com.google.firebase.database.FirebaseDatabase;
 public class SignupActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
+    private CheckBox shareAddressCheckBox;
 
     private EditText userName,passWord,userAddress,userEmail,personName;
     private Button regBtn;
     private FirebaseAuth firebaseAuth;
     String username,password,address,email,username1,name;
+    boolean shareable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,7 @@ public class SignupActivity extends AppCompatActivity {
         userEmail = findViewById(R.id.signUpEmailID);
         regBtn = findViewById(R.id.btnReg);
         personName = findViewById(R.id.signUpNameID);
+        shareAddressCheckBox = findViewById(R.id.shareAddressCheckBox);
 
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -56,6 +60,7 @@ public class SignupActivity extends AppCompatActivity {
                 address =  userAddress.getText().toString().trim();
                 email = userEmail.getText().toString().trim();
                 name = personName.getText().toString().trim();
+                shareable = shareAddressCheckBox.isChecked();
 
                 if(TextUtils.isEmpty(username)){
                     Toast.makeText(SignupActivity.this,"Enter username",Toast.LENGTH_SHORT).show();
@@ -99,6 +104,7 @@ public class SignupActivity extends AppCompatActivity {
                                     profileDatabase.child("address").setValue(address);
                                     profileDatabase.child("email").setValue(email);
                                     profileDatabase.child("name").setValue(name);
+                                    profileDatabase.child("shareaddress").setValue(shareable);
 
                                     startActivity(new Intent(SignupActivity.this,LoginActivity.class));
                                     finish();

@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".SignupActivity">
 
@@ -166,13 +166,22 @@
             android:id="@+id/signUpAddressID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="1dp"
             android:ems="10"
-            android:hint="Address\n(Please enter your detailed address including your road,area and country)"
+            android:hint="Address"
             android:singleLine="false" />
 
-    </LinearLayout>
+        <CheckBox
+            android:id="@+id/shareAddressCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textSize="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shareable"/>
 
+    </LinearLayout>
 
 
         <Button
