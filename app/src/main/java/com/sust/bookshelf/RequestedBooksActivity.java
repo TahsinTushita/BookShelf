@@ -93,7 +93,4 @@ public class RequestedBooksActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
 }

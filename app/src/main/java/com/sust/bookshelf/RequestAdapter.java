@@ -62,7 +62,6 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestH
 
 
         private TextView returnTextView;
-        private LinearLayout linearLayout;
         private EditText returnEditText;
 
 
@@ -73,9 +72,9 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestH
             bookTitle = itemView.findViewById(R.id.bookTitle);
             status = itemView.findViewById(R.id.statusid);
 
-            returnEditText = itemView.findViewById(R.id.returnEditText);
             returnTextView = itemView.findViewById(R.id.returnTextView);
-            linearLayout = itemView.findViewById(R.id.returnLinearLayout);
+            returnEditText = itemView.findViewById(R.id.returnEditText);
+
 
         }
 
@@ -92,8 +91,6 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestH
             }
             else if(request.getStatus()==2) {
                 status.setText("confirm sent");
-                linearLayout.setVisibility(View.VISIBLE);
-                returnEditText.setVisibility(View.VISIBLE);
                 status.setTextColor(ContextCompat.getColor(context,android.R.color.holo_blue_dark));
             }
             else if(request.getStatus()==3) {
@@ -116,6 +113,8 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestH
                     db = database.getReference("Profile/"+request.getUsername()+"/requestedBooks/"+request.getParent());
                     db.child("status").setValue(1);
 
+                    returnTextView.setVisibility(View.VISIBLE);
+                    returnEditText.setVisibility(View.VISIBLE);
 
                     request.setStatus(1);
                     setVisibility(request);
@@ -151,9 +150,13 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestH
 
                     db = database.getReference("Profile/"+request.getUsername()+"/requestedBooks/"+request.getParent());
                     db.child("status").setValue(2);
+                    db.child("returndate").setValue(returnEditText.getText().toString());
                     request.setStatus(2);
                     setVisibility(request);
                     setDetails(request);
+                    returnEditText.setVisibility(View.GONE);
+                    returnTextView.setText(returnTextView.getText().toString() + returnEditText.getText().toString());
+
                 }
             });
 
@@ -171,13 +174,18 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestH
         public void setVisibility(Request request) {
             if(request.getStatus()!=0)
                 itemView.findViewById(R.id.btnApprove).setVisibility(View.GONE);
+
 //                itemView.findViewById(R.id.btnCancel).setVisibility(View.GONE);
-            if(request.getStatus()==1)
+            if(request.getStatus()==1) {
                 itemView.findViewById(R.id.btnConfirmSent).setVisibility(View.VISIBLE);
-            if(request.getStatus()==2)
+            }
+            if(request.getStatus()==2) {
                 itemView.findViewById(R.id.btnConfirmSent).setVisibility(View.GONE);
-            if(request.getStatus()==3)
+            }
+            if(request.getStatus()==3) {
                 itemView.findViewById(R.id.btnCancel).setVisibility(View.GONE);
+
+            }
         }
     }
 }

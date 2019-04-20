@@ -70,9 +70,14 @@ public class SearchResults extends AppCompatActivity {
 //                            bookArrayList.add(book);
 //                        if(searchType.equals("author") && book.getAuthor().contains(searchText))
 //                            bookArrayList.add(book);
-//                        if(searchType.equals("catagory") && book.getCategory().contains(searchText)) || book.getPublisher().contains(searchText) || book.getCategory().equalsIgnoreCase(searchText)
-                        if(book.getAuthor().contains(searchText) || book.getTitle().contains(searchText) )
-                            bookArrayList.add(book);
+//                        if(searchType.equals("catagory") && book.getCategory().contains(searchText))
+                        try {
+                            if (book.getAuthor().contains(searchText) || book.getTitle().contains(searchText)
+                                    || book.getPublisher().contains(searchText) || book.getCategory().equalsIgnoreCase(searchText))
+                                bookArrayList.add(book);
+                        } catch (Exception e) {
+                            System.out.println(book.getTitle());
+                        }
                     }
                     SearchresultsAdapter adapter = new SearchresultsAdapter(SearchResults.this, bookArrayList,listener);
                     recyclerView.setAdapter(adapter);

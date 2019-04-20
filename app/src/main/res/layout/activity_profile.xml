@@ -187,6 +187,15 @@
             android:background="@drawable/round_corner_bg"
             android:text="Buy"
             android:visibility="gone" />
+        <Button
+            android:id="@+id/showBooklistBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/round_corner_bg"
+            android:text="Public Booklist"
+            />
 
     </LinearLayout>
 

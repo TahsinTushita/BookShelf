@@ -1,6 +1,7 @@
 package com.sust.bookshelf;
 
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -36,7 +37,7 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
     private ActionBarDrawerToggle drawerToggle;
 
     private TextView drawerUserName,username,email,address;
-    private Button editBtn;
+    private Button editBtn,showBooklistBtn;
     private ProfileInfo profileInfo = new ProfileInfo();
     private DatabaseReference profileInfodatabase,profileDatabase;
     Button requestBtn,buyBtn;
@@ -71,6 +72,7 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
         address = findViewById(R.id.profileAddress);
         requestBtn = findViewById(R.id.requestBtnid);
         buyBtn = findViewById(R.id.buyBtn);
+        showBooklistBtn=findViewById(R.id.showBooklistBtn);
 
         profileInfodatabase = FirebaseDatabase.getInstance().getReference("Profile");
         profileDatabase = FirebaseDatabase.getInstance().getReference("Profile");
@@ -116,6 +118,13 @@ public class Profile extends AppCompatActivity implements NavigationView.OnNavig
                 db.child("bookTitle").setValue(BookProfile.currentBook.getTitle());
                 db.child("parent").setValue(BookProfile.currentBook.getParent());
                 Toast.makeText(Profile.this,"Request sent",Toast.LENGTH_LONG).show();
+            }
+        });
+
+        showBooklistBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Profile.this,WishList.class));
             }
         });
 

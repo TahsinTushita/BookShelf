@@ -30,8 +30,12 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class RequestedBooksAdapter extends RecyclerView.Adapter<RequestedBooksAdapter.RequestedBooksHolder> {
 
@@ -93,12 +97,16 @@ public class RequestedBooksAdapter extends RecyclerView.Adapter<RequestedBooksAd
         AlarmManager am;
 
 
+        private TextView returnTextView;
+        private EditText returnEditText;
 
         public RequestedBooksHolder(@NonNull View itemView) {
             super(itemView);
             requestedUser = itemView.findViewById(R.id.requestedUser);
             requestedBook = itemView.findViewById(R.id.requestedBook);
             status = itemView.findViewById(R.id.statusid);
+            returnTextView = itemView.findViewById(R.id.returnTextView);
+            returnEditText = itemView.findViewById(R.id.returnEditText);
             setup();
         }
 
@@ -124,11 +132,35 @@ public class RequestedBooksAdapter extends RecyclerView.Adapter<RequestedBooksAd
             }
             else if(request.getStatus()==3) {
                 status.setText("confirm recieved");
+                returnTextView.setVisibility(View.VISIBLE);
+                returnTextView.setText(returnTextView.getText().toString() + request.getReturndate());
+
                 status.setTextColor(ContextCompat.getColor(context,android.R.color.holo_purple));
                 am.set( AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() +
                         ONE_SECOND, pi );
 
-                showNotification(context,context.getClass(),"BookShelf","Book Confirm Recieved!");
+                SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy");
+
+                Date c = Calendar.getInstance().getTime();
+                System.out.println("Current time => " + c);
+
+                SimpleDateFormat df = new SimpleDateFormat("dd MM yyyy");
+                String formattedDate = df.format(c);
+
+                String inputString1 = formattedDate;
+                String inputString2 = request.getReturndate();
+
+                try {
+                    Date date1 = myFormat.parse(inputString1);
+                    Date date2 = myFormat.parse(inputString2);
+                    long diff = date2.getTime() - date1.getTime();
+                    showNotification(context,context.getClass(),"BookShelf","Book to return within "+diff+" days!");
+
+                    System.out.println ("Days: " + TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
             }
         }
 
@@ -138,10 +170,7 @@ public class RequestedBooksAdapter extends RecyclerView.Adapter<RequestedBooksAd
                 @Override
 
                 public void onReceive(Context context, Intent intent) {
-                    Toast.makeText(context.getApplicationContext(), "Rise and Shine!", Toast.LENGTH_LONG).show();
-                    showNotification(context, NotificationActivity.class,
-                            "Lending Time ends at "+day+"/"+month+"/"+year , "Enter");
-                }
+               }
 
             };
             context.registerReceiver(br, new IntentFilter("com.authorwjf.wakeywakey") );

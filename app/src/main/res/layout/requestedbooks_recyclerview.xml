@@ -108,12 +108,11 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
     <LinearLayout
-        android:id="@+id/returnLinearLayout"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_height="wrap_content">
         <TextView
+            android:visibility="gone"
             android:id="@+id/returnTextView"
             android:text="To Return: "
             android:padding="10dp"
